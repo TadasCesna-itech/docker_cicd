@@ -42,13 +42,11 @@ const mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const databaseName = 'my-db';
 
 app.post('/update-profile', async (req, res) => {
-  console.log('==============================');
 
   const userObj = req.body;
   // await client.connect();
   await client.set('key', 'babushka');
   const aaa = await client.get('key');
-  console.log('==============================');
   console.log(aaa);
 
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, (err, mongoClient) => {
