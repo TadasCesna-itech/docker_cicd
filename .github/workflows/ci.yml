@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: tadascesna/node-app
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
