@@ -1,7 +1,8 @@
 version: '3'
 services:
-  # someAppName:
-  # image: ${docker-registry}/someAppName:1.0
+  # on server this would be also run, as our app
+  # node-app:
+  # image: docker.io/node-app:latest
   # ports:
   # - 3000:3000
   redisdb:
