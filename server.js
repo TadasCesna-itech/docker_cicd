@@ -8,7 +8,10 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const client = createClient();
-client.on('error', (err) => console.log('Redis Client Error', err));
+client.on('error', (err) => {
+  // eslint-disable-next-line
+  console.log('Redis Client Error', err)
+});
 (async () => { await client.connect(); })();
 
 app.use(
@@ -42,12 +45,9 @@ const mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const databaseName = 'my-db';
 
 app.post('/update-profile', async (req, res) => {
-
   const userObj = req.body;
   // await client.connect();
   await client.set('key', 'babushka');
-  const aaa = await client.get('key');
-  console.log(aaa);
 
   MongoClient.connect(mongoUrlLocal, mongoClientOptions, (err, mongoClient) => {
     if (err) throw err;
@@ -94,5 +94,6 @@ app.get('/get-profile', (req, res) => {
 });
 
 app.listen(3000, () => {
+  // eslint-disable-next-line
   console.log('app listening on port 3000!');
 });

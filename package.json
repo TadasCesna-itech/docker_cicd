@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
+    "lint": "eslint .",
     "start": "node server.js"
   },
   "author": "Nana Janashia",
