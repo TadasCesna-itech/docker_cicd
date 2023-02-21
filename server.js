@@ -36,10 +36,7 @@ app.get('/profile-picture', (req, res) => {
 });
 
 // use when starting application locally
-const mongoUrlLocal = 'mongodb://admin:password@localhost:27017';
-
-// use when starting application as docker container
-// const mongoUrlDocker = 'mongodb://admin:password@mongodb';
+const mongoUrl = process.env.IS_PROD === 'true' ? 'mongodb://admin:password@mongodb' : 'mongodb://admin:password@localhost:27017';
 
 // pass these options to mongo client connect request to avoid DeprecationWarning
 // for current Server Discovery and Monitoring engine
@@ -50,11 +47,13 @@ const databaseName = 'my-db';
 
 app.post('/update-profile', async (req, res) => {
   const userObj = req.body;
-  // await client.connect();
   await client.set('key', 'babushka');
+  const aa = await client.get('key');
+  console.log(aa);
 
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, (err, mongoClient) => {
+  MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
     if (err) throw err;
+    console.log('as ciaa');
 
     const db = mongoClient.db(databaseName);
     userObj.userid = 1;
@@ -79,7 +78,7 @@ app.post('/update-profile', async (req, res) => {
 app.get('/get-profile', (req, res) => {
   let response = {};
   // Connect to the db
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, (err, mongoClient) => {
+  MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
     if (err) throw err;
 
     const db = mongoClient.db(databaseName);

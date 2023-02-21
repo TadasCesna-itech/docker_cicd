@@ -1,11 +1,13 @@
 version: '3'
 services:
-  node-app:
-    image: registry.digitalocean.com/node-registry/node-application:latest
-    ports:
-    - 3000:3000
-    networks:
-      - my-network
+  # node-app:
+  #   image: registry.digitalocean.com/node-registry/node-application:latest
+  #   ports:
+  #   - 3000:3000
+  #   networks:
+  #     - my-network
+  #   depends_on:
+  #     - redisdb
   redisdb:
     image: redis
     ports:
