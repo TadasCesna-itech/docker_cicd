@@ -39,6 +39,6 @@ jobs:
       - name: Log in to DO Container Registry
         run: doctl registry login --expiry-seconds 600
       - name: Tag image
-        run: docker tag node-application \registry.digitalocean.com/node-registry/node-application:v1:1
+        run: docker tag node-application \registry.digitalocean.com/node-registry/node-application:v1.1
       - name: Push image to DO Container Registry
-        run: docker push registry.digitalocean.com/node-registry/node-application:v1:1
+        run: docker push registry.digitalocean.com/node-registry/node-application:v1.1
