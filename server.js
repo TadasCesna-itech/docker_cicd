@@ -8,8 +8,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const client = createClient({
-  host: 'redisdb',
-  port: 6379,
+  url: 'redis://redis:6379',
 });
 
 client.on('error', (err) => {
