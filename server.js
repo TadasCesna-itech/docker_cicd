@@ -7,7 +7,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const client = createClient();
+const client = createClient({
+  host: 'redisdb',
+  port: 6379,
+});
+
 client.on('error', (err) => {
   // eslint-disable-next-line
   console.log('Redis Client Error', err)
