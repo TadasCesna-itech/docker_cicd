@@ -1,14 +1,17 @@
 version: '3'
 services:
-  # on server this would be also run, as our app
   node-app:
     image: registry.digitalocean.com/node-registry/node-application:latest
     ports:
     - 3000:3000
+    networks:
+      - my-network
   redisdb:
     image: redis
     ports:
       - 6379:6379
+    networks:
+      - my-network
   mongodb:
     image: mongo
     ports:
@@ -18,6 +21,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongo-data:/data/db
+    networks:
+      - my-network
   mongo-express:
     image: mongo-express
     depends_on:
@@ -28,6 +33,11 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
 volumes:
   mongo-data:
     driver: local

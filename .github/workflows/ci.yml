@@ -43,4 +43,6 @@ jobs:
           docker tag node-application registry.digitalocean.com/node-registry/node-application:latest
           docker tag node-application registry.digitalocean.com/node-registry/node-application:v1.2
       - name: Push image to DO Container Registry
-        run: docker push registry.digitalocean.com/node-registry/node-application
+        run: |
+          docker push registry.digitalocean.com/node-registry/node-application:latest
+          docker push registry.digitalocean.com/node-registry/node-application:v1.2
