@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "v*.*"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build image
+        run: docker build -t node-application .
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Log in to DO Container Registry
+        run: doctl registry login --expiry-seconds 600
+      - name: Tag image
+        run: |
+          docker tag node-application registry.digitalocean.com/node-registry/node-application:latest
+          docker tag node-application registry.digitalocean.com/node-registry/node-application:v1.2
+      - name: Push image to DO Container Registry
+        run: |
+          docker push registry.digitalocean.com/node-registry/node-application:latest
+          docker push registry.digitalocean.com/node-registry/node-application:v1.2

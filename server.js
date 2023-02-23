@@ -7,9 +7,9 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const redisHost = process.env.IS_PROD === 'true' ? 'redisdb' : 'localhost';
 const client = createClient({
-  url: 'redis://redis:6379',
-  legacyMode: true,
+   url: `redis://${redisHost}:6379`,
 });
 
 client.on('error', (err) => {
