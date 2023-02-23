@@ -2,21 +2,21 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { MongoClient } = require('mongodb');
-// const { createClient } = require('redis');
+const { createClient } = require('redis');
 const bodyParser = require('body-parser');
 
 const app = express();
 
-// const client = createClient({
-//   url: 'redis://redis:6379',
-//   legacyMode: true,
-// });
+const client = createClient({
+  url: 'redis://redis:6379',
+  legacyMode: true,
+});
 
-// client.on('error', (err) => {
-//   // eslint-disable-next-line
-//   console.log('Redis Client Error', err)
-// });
-// (async () => { await client.connect(); })();
+client.on('error', (err) => {
+  // eslint-disable-next-line
+  console.log('Redis Client Error', err)
+});
+(async () => { await client.connect(); })();
 
 app.use(
   bodyParser.urlencoded({
@@ -47,9 +47,9 @@ const databaseName = 'my-db';
 
 app.post('/update-profile', async (req, res) => {
   const userObj = req.body;
-  // await client.set('key', 'babushka');
-  // const aa = await client.get('key');
-  // console.log(aa);
+  await client.set('key', 'babushka');
+  const aa = await client.get('key');
+  console.log(aa);
 
   MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
     if (err) throw err;
