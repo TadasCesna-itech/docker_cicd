@@ -18,4 +18,4 @@ RUN npm install
 EXPOSE 3000
 
 # no need for /home/app/server.js because of WORKDIR
-CMD ["node", "server.js"]
+CMD ["npm", "start"]

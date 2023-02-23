@@ -98,7 +98,5 @@ app.get('/get-profile', (req, res) => {
 
 app.listen(3000, () => {
   // eslint-disable-next-line
-  console.log('my env')
-  console.log(process.env.IS_PROD);
   console.log('app listening on port 3000!');
 });
