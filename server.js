@@ -9,7 +9,7 @@ const app = express();
 
 const redisHost = process.env.IS_PROD === 'true' ? 'redisdb' : 'localhost';
 const client = createClient({
-   url: `redis://${redisHost}:6379`,
+  url: `redis://${redisHost}:6379`,
 });
 
 client.on('error', (err) => {
