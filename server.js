@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { MongoClient } = require('mongodb');
+// const { MongoClient } = require('mongodb');
 // const { createClient } = require('redis');
 const bodyParser = require('body-parser');
 
@@ -52,26 +52,26 @@ app.post('/update-profile', async (req, res) => {
   // const aa = await client.get('key');
   // console.log(aa);
 
-  MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
-    if (err) throw err;
-    console.log('as ciaa');
+  // MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
+  //   if (err) throw err;
+  //   console.log('as ciaa');
 
-    const db = mongoClient.db(databaseName);
-    userObj.userid = 1;
+  //   const db = mongoClient.db(databaseName);
+  //   userObj.userid = 1;
 
-    const myquery = { userid: 1 };
-    const newvalues = { $set: userObj };
+  //   const myquery = { userid: 1 };
+  //   const newvalues = { $set: userObj };
 
-    db.collection('users').updateOne(
-      myquery,
-      newvalues,
-      { upsert: true },
-      (error) => {
-        if (error) throw error;
-        mongoClient.close();
-      },
-    );
-  });
+  //   db.collection('users').updateOne(
+  //     myquery,
+  //     newvalues,
+  //     { upsert: true },
+  //     (error) => {
+  //       if (error) throw error;
+  //       mongoClient.close();
+  //     },
+  //   );
+  // });
   // Send response
   res.send(userObj);
 });
