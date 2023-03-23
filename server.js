@@ -34,6 +34,7 @@ app.get('/profile-picture', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'image/jpg' });
   res.end(img, 'binary');
 });
+console.log('kaka');
 
 // use when starting application locally
 const mongoUrl = process.env.IS_PROD === 'true' ? 'mongodb://admin:password@mongodb' : 'mongodb://admin:password@localhost:27017';
