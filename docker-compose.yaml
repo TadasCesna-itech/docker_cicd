@@ -35,8 +35,8 @@ services:
     - 3000:3000
     networks:
       - my-network
-    depends_on:
-      - mongodb
+    # depends_on:
+    #   - mongodb
 networks:
   my-network:
     driver: bridge
