@@ -2,21 +2,21 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { MongoClient } = require('mongodb');
-const { createClient } = require('redis');
+// const { createClient } = require('redis');
 const bodyParser = require('body-parser');
 
 const app = express();
 
-const redisHost = process.env.IS_PROD === 'true' ? 'redisdb' : 'localhost';
-const client = createClient({
-  url: `redis://${redisHost}:6379`,
-});
+// const redisHost = process.env.IS_PROD === 'true' ? 'redisdb' : 'localhost';
+// const client = createClient({
+//   url: `redis://${redisHost}:6379`,
+// });
 
-client.on('error', (err) => {
-  // eslint-disable-next-line
-  console.log('Redis Client Error', err)
-});
-(async () => { await client.connect(); })();
+// client.on('error', (err) => {
+//   // eslint-disable-next-line
+//   console.log('Redis Client Error', err)
+// });
+// (async () => { await client.connect(); })();
 
 app.use(
   bodyParser.urlencoded({
@@ -47,9 +47,9 @@ const databaseName = 'my-db';
 
 app.post('/update-profile', async (req, res) => {
   const userObj = req.body;
-  await client.set('key', 'babushka');
-  const aa = await client.get('key');
-  console.log(aa);
+  // await client.set('key', 'babushka');
+  // const aa = await client.get('key');
+  // console.log(aa);
 
   MongoClient.connect(mongoUrl, mongoClientOptions, (err, mongoClient) => {
     if (err) throw err;

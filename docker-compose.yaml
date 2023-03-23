@@ -1,11 +1,11 @@
 version: '3.8'
 services:
-  redisdb:
-    image: redis:7-alpine
-    ports:
-      - 6379:6379
-    networks:
-      - my-network
+  # redisdb:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - 6379:6379
+  #   networks:
+  #     - my-network
   mongodb:
     image: mongo
     ports:
